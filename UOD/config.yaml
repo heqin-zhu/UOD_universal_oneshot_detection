@@ -1,0 +1,146 @@
+run_dir: '.runs'
+run_name: 'unet'
+
+epochs: 60
+val_freq: 1
+batch_size: 2
+gpu: '0'
+seed: 113
+
+crop_img: false
+crop_radius: 64
+
+
+mix_step: 0
+
+dataset: 
+    blur: 0
+    data_list: ['head']
+    head: # spacing: 0.1 x 0.1 mm 
+        prefix: '../../data/head/ceph_land/origin'
+        physical_factor: 0.1
+        paras:
+            num_landmark: 19
+            img_size: [576, 576] # resize to height x width, origin_size: [2400, 1935]
+            alpha: 10
+            sigma: 10
+            highres_factor: 1
+            cache_dir: '.cache_head'
+            train_with_pseudo: False
+            pseudo_path: ''
+            few_shot: 0
+    hand:
+        prefix: '../../data/hand'
+        physical_factor: 0.1
+        paras:
+            num_landmark: 37
+            img_size: [576, 576]
+            alpha: 10
+            sigma: 10
+            highres_factor: 1
+            cache_dir: '.cache_hand'
+            train_with_pseudo: False
+            pseudo_path: ''
+            few_shot: 0
+
+    jsrt:
+        # 247 images, origin size = 2048x2048, 0.175 -mm px
+        prefix: '../../data/JSRT'
+        physical_factor: 0.175
+        paras:
+            num_landmark: 6
+            img_size: [576, 576]
+            alpha: 10
+            sigma: 10
+            cache_dir: '.cache_jsrt'
+            train_with_pseudo: False
+            pseudo_path: ''
+            few_shot: 0
+
+model: 'DATR'  # which model to use
+model_stg2: '' # model_hr'
+
+checkpoint: ''
+checkpoint_stg2: ''
+
+unet:
+    in_channels: 1
+u2net:
+    in_channels: 1
+
+DATR:
+    img_size: 576
+    patch_size: 4
+    in_channels: 3
+    embed_dim: 96
+    depths: [2, 2, 6, 2]
+    num_heads: [3, 6, 12, 24]
+    window_size: 7
+    mlp_ratio: 4.
+    qkv_bias: True
+    drop_rate: 0
+    attn_drop_rate: 0
+    drop_path_rate: 0.2
+    ape: False
+    patch_norm: True
+    out_indices: [0, 1, 2, 3]
+    out_channel_list: [1]
+    multi_feature: False
+    residual: False
+    down_scale: 4  # embed_dim//down_scale
+    checkpoint_path: ''
+    fusion_depth: 1
+    base_path: '../pre-trained/swin_small_patch4_window7_224.pth'
+    domain_num: 3
+    attn_type: 'query' # origin, query, query_v, value_qk
+    use_layerscale: False
+
+swin_type: 'small'
+swin_small:
+    depths: [2, 2, 18, 2]
+    drop_path_rate: 0.2
+    base_path: '../pre-trained/swin_small_patch4_window7_224.pth'
+
+swin_base:
+    depths: [2, 2, 18, 2]
+    drop_path_rate: 0.5
+    num_heads: [4, 8, 16, 32]
+    embed_dim: 128
+    base_path: '../pre-trained/swin_base_patch4_window7_224_22kto1k.pth'
+
+swin_base_2:
+    depths: [2, 2, 18, 2]
+    drop_path_rate: 0.5
+    num_heads: [4, 8, 16, 32]
+    embed_dim: 128
+    base_path: '../pre-trained/swin_base_patch4_window7_224.pth'
+
+swin_large:
+    depths: [2, 2, 18, 2]
+    num_heads: [6, 12, 24, 48]
+    embed_dim: 192
+    base_path: '../pre-trained/swin_large_patch4_window7_224.pth'
+
+learning:
+    lr: 0.0001
+    scheduler: clr # step
+    steplr:
+        step_size: 5
+        gamma: 0.75
+        last_epoch: -1
+    clr:
+        base_lr: 0.0001
+        max_lr: 0.001
+        step_size_up: 300
+        step_size_down: 300
+        mode: triangular
+        cycle_momentum: false
+
+    weight_actionmap: 1
+    weight_offset: 1
+
+    # similarity, contrastive learning
+    freeze_encoder_path: ''
+    learn_similarity: False
+    weight_similarity: 0.1
+    use_momentum: True

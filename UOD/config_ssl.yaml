@@ -1,0 +1,54 @@
+base:
+    run_dir: ''
+    run_name: ''
+    phase: train
+    config: ''
+    checkpiont_path: ''
+    oneshot_id_list: []
+    data_list: []
+    model: ''
+    batch_size: 6
+    gpu: 0
+
+dataset:
+  head:
+    pth: '../../data/head/'
+    num_landmarks : 19
+  hand:
+    pth: '../../data/hand/'
+    num_landmarks : 37
+  jsrt:
+    pth: '../../data/JSRT/'
+    num_landmarks : 6
+
+training:
+  lr : 0.00001
+  decay_step : 50
+  decay_gamma : 0.8
+  epoch: 800
+  save_seq : 30
+  nearby : 6
+  lambda : 2
+  alpha : 0.99
+  conf: False
+  patch_size: 256
+
+unet_pretrained:
+    n_channels: 3
+    non_local: True
+    emb_len: 16
+
+ures:
+    in_channels: 3
+    out_channel_list: [19]
+    embed_dim: 16
+uvgg:
+    in_channels: 3
+    non_local: True
+    emb_len: 16
+    domain_num: 1
+uvgg_ori:
+    in_channels: 3
+    non_local: True
+    emb_len: 16
+    domain_num: 1
