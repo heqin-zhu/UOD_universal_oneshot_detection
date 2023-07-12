@@ -1,9 +1,10 @@
 # UOD_Universal_Oneshot_Detection [arXiv](https://arxiv.org/abs/2306.07615)
 Official PyTorch implementation for MICCAI 2023 paper:
+
 [UOD: universal one-shot detection of anatomical landmarks](https://github.com/heqin-zhu/UOD_universal_oneshot_detection)  
  [Heqin Zhu](https://scholar.google.com/citations?user=YkfSFekAAAAJ), [Quan Quan](https://scholar.google.com/citations?user=mlTXS0YAAAAJ), [Qingsong Yao](https://scholar.google.com/citations?user=CMiRzlAAAAAJ), [Zaiyi Liu](https://scholar.google.com/citations?user=OkrZX0AAAAAJ), [S. Kevin Zhou](https://scholar.google.com/citations?user=8eNm2GMAAAAJ)  
 
-![results](images/results.png)
+![results](https://github.com/heqin-zhu/UOD_universal_oneshot_detection/blob/master/images/result.png)
 
 ## Introduction
  One-shot medical landmark detection gains much attention and achieves great success for its label-efficient training process. However, existing one-shot learning methods are highly specialized in a single domain and suffer domain preference heavily in the situation of multi-domain unlabeled data. Moreover, one-shot learning is not robust that it faces performance drop when annotating a sub-optimal image. To tackle these issues, we resort to developing a domain-adaptive one-shot landmark detection framework for handling multi-domain medical images, named __Universal One-shot Detection (UOD)__. UOD consists of two stages and two corresponding universal models which are designed as combinations of domain-specific modules and domain-shared modules. In the first stage, a domain-adaptive convolution model is self-supervised learned to generate pseudo landmark labels. In the second stage, we design a domain-adaptive transformer to eliminate domain preference and build the global context for multi-domain data. Even though only one annotated sample from each domain is available for training, the domain-shared modules help UOD aggregate all one-shot samples to detect more robust and accurate landmarks. We investigated both qualitatively and quantitatively the proposed UOD on three widely-used public X-ray datasets in different anatomical domains (i.e., head, hand, chest) and obtained state-of-the-art performances in each domain.
@@ -34,6 +35,8 @@ python3 summary.py -v --SDR 2 2.5 3 4  -r .runs/stg2
   year={2023}
 }
 ```
+## LICENSE
+[Apache-2.0](LICENSE)
 
 ## Acknowledgments
 - [GU2Net](https://github.com/MIRACLE-Center/YOLO_Universal_Anatomical_Landmark_Detection)
