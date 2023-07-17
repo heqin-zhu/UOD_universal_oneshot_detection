@@ -30,7 +30,7 @@ python3 summary.py -v --SDR 2 2.5 3 4  -r .runs/stg2
 ```
 @article{zhu2023uod,
   title={UOD: Universal One-shot Detection of Anatomical Landmarks},
-  author={Zhu, Heqin and Quan, Quan and Yao, Qingsong and Liu, Zaiyi and S. Kevin Zhou},
+  author={Zhu, Heqin and Quan, Quan and Yao, Qingsong and Liu, Zaiyi and Zhou, S. Kevin},
   journal={arXiv preprint arXiv:2306.07615},
   year={2023}
 }
@@ -38,6 +38,6 @@ python3 summary.py -v --SDR 2 2.5 3 4  -r .runs/stg2
 ## LICENSE
 [Apache-2.0](LICENSE)
 
-## Acknowledgments
+## Acknowledgements
 - [GU2Net](https://github.com/MIRACLE-Center/YOLO_Universal_Anatomical_Landmark_Detection)
 - [CC2D](https://github.com/MIRACLE-Center/Oneshot_landmark_detection)
