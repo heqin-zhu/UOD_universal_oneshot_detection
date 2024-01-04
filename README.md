@@ -28,11 +28,13 @@ python3 summary.py -v --SDR 2 2.5 3 4  -r .runs/stg2
 
 ## Citation
 ```
-@article{zhu2023uod,
-  title={UOD: Universal One-shot Detection of Anatomical Landmarks},
-  author={Zhu, Heqin and Quan, Quan and Yao, Qingsong and Liu, Zaiyi and Zhou, S. Kevin},
-  journal={arXiv preprint arXiv:2306.07615},
-  year={2023}
+@inproceedings{zhu2023uod,
+  title={UOD: Universal One-Shot Detection of Anatomical Landmarks},
+  author={Zhu, Heqin and Quan, Quan and Yao, Qingsong and Liu, Zaiyi and Zhou, S Kevin},
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={24--34},
+  year={2023},
+  organization={Springer}
 }
 ```
 ## LICENSE
